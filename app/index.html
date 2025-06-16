@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>User Input Form</title>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: #eef2f7;
+      margin: 0;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      padding: 2rem;
+    }
+
+    .main-wrapper {
+      display: flex;
+      justify-content: flex-start;
+      align-items: flex-start;
+      width: 100%;
+      max-width: 1200px;
+      gap: 2rem;
+    }
+
+    .form-container {
+      background: white;
+      padding: 2rem 2.5rem;
+      border-radius: 12px;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+      width: 340px;
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    input[type="text"] {
+      padding: 0.7rem 1rem;
+      font-size: 1rem;
+      border: 1.5px solid #ccc;
+      border-radius: 8px;
+      transition: border-color 0.25s ease;
+    }
+
+    input[type="text"]:focus {
+      border-color: #0056b3;
+      outline: none;
+    }
+
+    button {
+      padding: 0.75rem 1.2rem;
+      font-size: 1.05rem;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      color: white;
+      transition: background-color 0.3s ease;
+    }
+
+    #add-user {
+      background-color: #28a745;
+    }
+
+    #add-user:hover {
+      background-color: #1e7e34;
+    }
+
+    #show-user {
+      background-color: #0056b3;
+    }
+
+    #show-user:hover {
+      background-color: #01448b;
+    }
+
+    #delete-user {
+      background-color: #a30b00;
+    }
+
+    #delete-user:hover {
+      background-color: #6f0700;
+    }
+
+    #update-user {
+      background-color: #ffc107;
+      color: rgb(255, 255, 255);
+    }
+
+    #update-user:hover {
+      background-color: #e0a800;
+    }
+
+    .output-box {
+      flex: 1;
+      padding: 1.5rem;
+      background-color: #ffffff;
+      border-radius: 12px;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+      max-height: 80vh;
+      overflow-y: auto;
+      font-family: monospace;
+      font-size: 0.95rem;
+      white-space: pre-wrap;
+      word-break: break-word;
+      min-width: 300px;
+    }
+  </style>
+</head>
+<body>
+  <div class="main-wrapper">
+    <div class="form-container">
+      <input type="text" id="inpId" name="id" placeholder="Enter ID for Delete / Update" />
+      <input type="text" id="inpName" name="btn" placeholder="Enter name" />
+      <input type="text" id="inpAge" name="btn" placeholder="Enter age" />
+      <button type="submit" id="add-user"><b>C</b>reate User</button>
+      <button type="submit" id="show-user"><b>R</b>ead User</button>
+      <button type="submit" id="update-user"><b>U</b>pdate User</button>
+      <button type="submit" id="delete-user"><b>D</b>elete User</button>
+    </div>
+
+    <div class="output-box" id="output">
+      <!-- User data will appear here -->
+    </div>
+  </div>
+
+  <script>
+    function showOutput(msg) {
+      const out = document.getElementById("output");
+
+      if (msg.data && Array.isArray(msg.data)) {
+        if (msg.data.length === 0) {
+          out.textContent = "No users found.";
+          return;
+        }
+
+        // Format each user entry
+        out.innerHTML = msg.data.map(row => {
+          const [id, name, age] = row;
+          return `<div><b>ID:</b> ${id} | <b>Name:</b> ${name} | <b>Age:</b> ${age}</div>`;
+        }).join("<hr>");
+      } else if (typeof msg === "object") {
+        out.textContent = Object.entries(msg).map(([k, v]) => `${k.toUpperCase()}: ${v}`).join("\n");
+      } else {
+        out.textContent = String(msg);
+      }
+    }
+
+    document.getElementById("add-user").onclick = () => {
+      let inp = document.getElementById("inpName").value;
+      let inp2 = document.getElementById("inpAge").value;
+      if (inp == "" || inp2 == "") return;
+
+      fetch("http://127.0.0.1:8000/response/", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+          name: `${inp}`,
+          age: Number(inp2)
+        })
+      })
+      .then(response => response.json())
+      .then(data => showOutput(data));
+    }
+
+    document.getElementById("show-user").onclick = () => {
+      let inp3 = document.getElementById("inpId").value;
+      if (inp3 == "") {
+        fetch("http://127.0.0.1:8000/users")
+        .then(response => response.json())
+        .then(data => showOutput(data));
+      } else {
+        fetch(`http://127.0.0.1:8000/users/${inp3}`)
+        .then(response => response.json())
+        .then(data => showOutput(data));
+      }
+    }
+
+    document.getElementById("delete-user").onclick = () => {
+      let inp3 = document.getElementById("inpId").value;
+      if (inp3 == "") return;
+
+      fetch(`http://127.0.0.1:8000/del-user/${inp3}`, {
+        method: "DELETE",
+      })
+      .then(response => response.json())
+      .then(data => showOutput(data));
+    }
+
+    document.getElementById("update-user").onclick = () => {
+      let id = document.getElementById("inpId").value;
+      let name = document.getElementById("inpName").value;
+      let age = document.getElementById("inpAge").value;
+      if (!id || !name || !age) return;
+
+      fetch(`http://127.0.0.1:8000/update-user/${id}`, {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({ name, age: Number(age) })
+      })
+      .then(response => response.json())
+      .then(data => showOutput(data));
+    }
+  </script>
+</body>
+</html>
