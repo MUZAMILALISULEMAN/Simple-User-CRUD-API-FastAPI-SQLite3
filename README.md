@@ -21,6 +21,46 @@ A clean and modern backend project built with:
 
 ---
 
+## 🎬 CRUD Operation Previews
+
+Here’s a visual walkthrough of each core operation in the app:
+
+---
+
+### 🟢 Create User
+
+<p align="center">
+  <img src="gifs/create.gif" alt="Create User" width="600"/>
+</p>
+
+---
+
+### 🔵 Read Users
+
+<p align="center">
+  <img src="gifs/read.gif" alt="Read Users" width="600"/>
+</p>
+
+---
+
+### 🟡 Update User
+
+<p align="center">
+  <img src="gifs/update.gif" alt="Update User" width="600"/>
+</p>
+
+---
+
+### 🔴 Delete User
+
+<p align="center">
+  <img src="gifs/delete.gif" alt="Delete User" width="600"/>
+</p>
+
+---
+
+
+
 ## 🧪 API Endpoints
 
 | Method | Endpoint                  | Description                  |
