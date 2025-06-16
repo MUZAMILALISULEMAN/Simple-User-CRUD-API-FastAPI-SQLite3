@@ -21,11 +21,6 @@ A clean and modern backend project built with:
 
 ---
 
-## 🛠 Project Structure
-<pre> ``` fastapi-project/ ├── main.py # FastAPI app with all endpoints ├── requirements.txt # Dependencies ├── Dockerfile # Docker image instructions ├── .dockerignore # Excludes unnecessary files ├── README.md # This file └── index.html # Frontend UI (open with Live Server) ``` </pre>
-
----
-
 ## 🧪 API Endpoints
 
 | Method | Endpoint             | Description                  |
