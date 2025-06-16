@@ -23,13 +23,13 @@ A clean and modern backend project built with:
 
 ## 🧪 API Endpoints
 
-| Method | Endpoint             | Description                  |
-|--------|----------------------|------------------------------|
-| POST   | `/response/`         | Create a new user            |
-| GET    | `/users`             | Get all users                |
-| GET    | `/users/{id}`        | Get user by ID               |
-| DELETE | `/del-user/{id}`     | Delete user by ID            |
-| PUT    | `/update/{id}`       | Update user's name and age   |
+| Method | Endpoint                  | Description                  |
+|--------|---------------------------|------------------------------|
+| POST   | `/response/`              | Create a new user            |
+| GET    | `/users`                  | Get all users                |
+| GET    | `/users/{id}`             | Get user by ID               |
+| DELETE | `/del-user/{id}`          | Delete user by ID            |
+| PUT    | `/update-user/{id}`       | Update user's name and age   |
 
 ---
 
