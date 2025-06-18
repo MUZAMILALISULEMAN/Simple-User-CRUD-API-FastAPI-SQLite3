@@ -23,7 +23,7 @@
       let inp2 = document.getElementById("inpAge").value;
       if (inp == "" || inp2 == "") return;
 
-      fetch("http://127.0.0.1:8000/response/", {
+      fetch("https://simple-user-crud-api-fastapi-sqlite3.onrender.com/response/", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ name: inp, age: Number(inp2) })
@@ -35,11 +35,11 @@
     document.getElementById("show-user").onclick = () => {
       let inp3 = document.getElementById("inpId").value;
       if (inp3 == "") {
-        fetch("http://127.0.0.1:8000/users")
+        fetch("https://simple-user-crud-api-fastapi-sqlite3.onrender.com/users")
           .then(response => response.json())
           .then(data => showOutput(data));
       } else {
-        fetch(`http://127.0.0.1:8000/users/${inp3}`)
+        fetch(`https://simple-user-crud-api-fastapi-sqlite3.onrender.com/users/${inp3}`)
           .then(response => response.json())
           .then(data => showOutput(data));
       }
@@ -49,7 +49,7 @@
       let inp3 = document.getElementById("inpId").value;
       if (inp3 == "") return;
 
-      fetch(`http://127.0.0.1:8000/del-user/${inp3}`, {
+      fetch(`https://simple-user-crud-api-fastapi-sqlite3.onrender.com/del-user/${inp3}`, {
         method: "DELETE"
       })
       .then(response => response.json())
@@ -62,7 +62,7 @@
       let age = document.getElementById("inpAge").value;
       if (!id || !name || !age) return;
 
-      fetch(`http://127.0.0.1:8000/update-user/${id}`, {
+      fetch(`https://simple-user-crud-api-fastapi-sqlite3.onrender.com/update-user/${id}`, {
         method: "PUT",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ name, age: Number(age) })
