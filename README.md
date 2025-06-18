@@ -1,4 +1,4 @@
-# 🚀 FastAPI + SQLite3 CRUD API (Dockerized)
+# 🚀 FastAPI + SQLite3 CRUD API
 
 A clean and modern backend project built with:
 
@@ -73,21 +73,5 @@ Here’s a visual walkthrough of each core operation in the app:
 
 ---
 
-## 🧑‍💻 How to Use (with Docker)
-
-### 1. Clone the repo
-
-```bash
-git clone https://github.com/yourusername/fastapi-project.git
-cd fastapi-project
-```
-### 2. Build the Docker image
-
-```bash
-docker build -t fastapi-backend .
-docker run -d -p 8000:8000 fastapi-backend
-```
-### 2. Test API
-Open your browser and go to: http://localhost:8000/docs
 
 
