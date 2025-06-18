@@ -39,7 +39,7 @@ app.add_middleware(
 )
 
 def get_connection():
-    conn = sqlite3.connect("mydata.db")
+    conn = sqlite3.connect("database.db")
     return conn, conn.cursor()
 
 def addUser(data: TextInput):
