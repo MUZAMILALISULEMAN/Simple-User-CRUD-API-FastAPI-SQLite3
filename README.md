@@ -13,7 +13,7 @@ A clean and modern backend project built with:
 
 You can check out a live demo of this FastAPI + SQLite3 CRUD API here:
 
-🔗 [**Live Demo: FastAPI + SQLite3 CRUD API**](https://muzamilalisuleman.github.io/Simple-User-CRUD-API-FastAPI-SQLite3/)
+🔗 [**Live Demo**](https://muzamilalisuleman.github.io/Simple-User-CRUD-API-FastAPI-SQLite3/)
 
 ---
 
